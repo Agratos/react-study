@@ -8,28 +8,19 @@ const Todo = () => {
 
   useEffect(() => {
     console.log(todo)
-  },[todo])
-
-  const SetTodo = (e) => {
-    setTodo([
-      ...todo,
-      {
-        text: inputValue
-      }
-    ])
-  }
+  }, [todo])
 
   const ChangeInput = (e) => {
     setInputValue(e.target.value);
   }
-  
-  return(
+
+  return (
     <Wrapper>
       <Title>TodoList</Title>
       <InputBox placeholder="할일을 입력해주세요" onChange={ChangeInput} />
-      <InputButton onClick={SetTodo}>저장</InputButton>
-      {todo.map(( data, index ) => (
-        <TodoBard 
+      <InputButton onClick={() => setTodo([...todo, { text: inputValue }])}>저장</InputButton>
+      {todo.map((data, index) => (
+        <TodoBard
           key={index}
           content={data.text}
         />
