@@ -20,7 +20,7 @@ const App = () => {
     setComputerSelect(computerChoice);
 
     if(userIndex === cumputerIndex){
-      setResult(null)
+      setResult('draw')
     } else if(userIndex === (cumputerIndex + 1)%3 ) {
       setResult('cumputer')
     } else {
@@ -32,14 +32,14 @@ const App = () => {
     <Wrapper>
       <ResultWrapper>
         <Result>
-          {result === null ? null : result === 'user' ? 'WIN' : 'LOSE'}
+          {result === null ? null : result === 'draw' ? 'draw' : result === 'user' ? 'win' : 'lose'}
         </Result>
         <Result>
-          {result === null ? null : result === 'cumputer' ? 'WIN' : 'LOSE'}
+          {result === null ? null : result === 'draw' ? 'draw' : result === 'cumputer' ? 'win' : 'lose'}
         </Result>
       </ResultWrapper>
       <BoxWrapper>
-        <Box id='user' result={result === null ? null : result === 'user'}>
+        <Box id='user' result={result === 'user' ? true : result === 'cumputer' ? false : null}>
           {userSelect && 
             <img 
               src={require(`./assets/${userSelect}.png`)} 
@@ -49,7 +49,7 @@ const App = () => {
             />
           }
         </Box>
-        <Box id='cumputer' result={result === null ? null : result === 'cumputer'}>
+        <Box id='cumputer' result={result === 'cumputer' ? true : result === 'user' ? false : null}>
           {cumputerSelect && 
             <img 
               src={require(`./assets/${cumputerSelect}.png`)} 
@@ -94,6 +94,7 @@ const ResultWrapper = styled.section`
 const Result = styled.div`
   font-size: 40px;
   font-weight: bold;
+  text-transform: uppercase;
 `;
 const BoxWrapper = styled.section`
   display: flex;
