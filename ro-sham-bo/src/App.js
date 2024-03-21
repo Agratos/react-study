@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 
 import Rulet from './components/Rulet';
+import BoxClass from './components/BoxClass';
 
 import rockImg from './assets/rock.png';
 import scissorsImg from './assets/scissors.png';
@@ -66,7 +67,15 @@ const App = () => {
         </Result>
       </ResultWrapper>
       <BoxWrapper>
-        <Box id='user' result={result === 'user' ? 'true' : result === 'cumputer' ? 'false' : null}>
+        <BoxClass 
+          result={result === 'user' ? 'true' : result === 'cumputer' ? 'false' : null}
+          select={userSelect}
+        />
+        <BoxClass 
+          result={result === 'cumputer' ? 'true' : result === 'user' ? 'false' : null}
+          select={cumputerSelect}
+        />
+        {/* <Box id='user' result={result === 'user' ? 'true' : result === 'cumputer' ? 'false' : null}>
           {userSelect && 
             <img 
               src={require(`./assets/${userSelect}.png`)} 
@@ -85,17 +94,17 @@ const App = () => {
               height={200}
             />
           }
-        </Box>
+        </Box> */}
       </BoxWrapper>
       <ButtonWrapper>
         <Button onClick={() => isStart && onClickButton(0)}>
-          <img src={rockImg} />
+          <img src={rockImg} alt={'rockImg'} />
         </Button>
         <Button onClick={() => isStart && onClickButton(1)}>
-          <img src={scissorsImg}/>
+          <img src={scissorsImg} alt={'scissorsImg'} />
         </Button>
         <Button onClick={() => isStart && onClickButton(2)}>
-          <img src={pagerImg}/>
+          <img src={pagerImg} alt={'pagerImg'} />
         </Button>
       </ButtonWrapper>
       <MoneyWrapper>
@@ -142,7 +151,7 @@ const Wrapper = styled.div`
 const Title = styled.section`
   position: absolute;
   top: 40px;
-  font-size: 60px;
+  font-size: 30px;
   font-weight: bolder;
 `;
 const ResultWrapper = styled.section`
@@ -161,16 +170,16 @@ const Result = styled.div`
 const BoxWrapper = styled.section`
   display: flex;
 `;
-const Box = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  border: 4px solid ${({ result }) => (result === null ? 'black' : result === 'true' ? '#00FF00' : 'red')};
-  width: 400px;
-  height: 400px;
-  margin: 16px;
-`;
+// const Box = styled.div`
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   flex-direction: column;
+//   border: 4px solid ${({ result }) => (result === null ? 'black' : result === 'true' ? '#00FF00' : 'red')};
+//   width: 400px;
+//   height: 400px;
+//   margin: 16px;
+// `;
 const ButtonWrapper = styled.section`
   display: flex;
   align-items: center;
