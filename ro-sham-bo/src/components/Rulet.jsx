@@ -90,6 +90,7 @@ const Rulet = ({bet ,handleMoney, setIsOpen, setIsStart}) => {
                             alert(`잭! 팟! 25배 당첨 !`);
                             handleMoney(bet * 25)
                             break;
+                        default:
                     }  
                     setIsOpen(false);
                     setIsStart(true);
@@ -107,9 +108,6 @@ const Rulet = ({bet ,handleMoney, setIsOpen, setIsStart}) => {
             <CanvasWrapper>
                 <Triangle />
                 <Canvas ref={canvasRef} width={500} height={500} />
-                {/* <Button onClick={() => setIsOpen(false)}>
-                    확인
-                </Button> */}
             </CanvasWrapper>
         </Wrapper>
     )
@@ -144,16 +142,5 @@ const Triangle = styled.div`
     z-index: 10;
 `;
 const Canvas = styled.canvas``;
-const Button = styled.button`
-    background-color: #46e046;
-    width: 200px;
-    padding: 16px 4px;
-    margin-top: 24px;
-    font-size: 20px;
-    font-weight: bolder;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-`;
 
 export default Rulet;
