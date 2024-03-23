@@ -16,7 +16,7 @@ const KakaoMap = ({setPosition}) => {
                     height: '100%',
                     color: 'darkblue'
                 }}
-                level={13}
+                level={12}
                 onClick={(_, mouseEvent) => {
                     const latlng = mouseEvent.latLng
                     setPosition({
