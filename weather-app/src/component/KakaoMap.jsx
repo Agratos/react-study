@@ -9,11 +9,11 @@ const KakaoMap = ({setPosition}) => {
     return (
         <Wrapper>
             <Map
-                id="map"
+                id='map'
                 center={{lat: 38, lng: 127}}
                 style={{
-                    width: "1400px",
-                    height: "100%",
+                    width: '100%',
+                    height: '100%',
                     color: 'darkblue'
                 }}
                 level={13}
@@ -30,6 +30,7 @@ const KakaoMap = ({setPosition}) => {
     )
 }
 const Wrapper = styled.div`
+    flex: 1;
     margin: 36px 0 36px 36px;
     border: 2px solid black;
     border-radius: 16px;
