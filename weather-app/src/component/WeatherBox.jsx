@@ -1,9 +1,17 @@
 import React from 'react';
+import { ClipLoader } from 'react-spinners';
 import styled from 'styled-components';
 
-const WeatherBox = ({ weather }) => {
-    console.log(weather)
+const WeatherBox = ({ weather, isLoading }) => {
     return (
+        isLoading ? 
+        <Wrapper><ClipLoader loading={isLoading} size={150} color={'#f88c6b'}/></Wrapper> 
+        :
+        isLoading === 'error' ? 
+        <Wrapper>
+            <ErrorMessage>Error</ErrorMessage>
+        </Wrapper>
+        :
         <Wrapper>
             <Location>{weather?.name}</Location>
             <TemperatureWrapper>
@@ -21,7 +29,7 @@ const WeatherBox = ({ weather }) => {
                 </TemperatureBox>
             </TemperatureWrapper>
             <Weather>{weather?.weather[0].description}</Weather>
-        </Wrapper>
+        </Wrapper>  
     ) 
 }
 const Wrapper = styled.div`
@@ -29,17 +37,16 @@ const Wrapper = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 300px;
+    width: 380px;
     height: 320px;
     border: 0.5px solid black;
     border-radius: 16px;
     padding: 40px ;
-    background-color: white;
+    background-color: #e7e5e5;
     font-weight: bolder;
 `;
-
 const Location = styled.div`
-    font-size: 20px;
+    font-size: 24px;
     margin-bottom: 8px;
 `;
 const Temperature = styled.div`
@@ -59,6 +66,10 @@ const MinMaxTemperature = styled.div`
 const Weather = styled.div`
     font-size: 24px;
     margin-top: 8px;
+`;
+const ErrorMessage = styled.div`
+    font-size: 30px;
+    font-weight: bolder;
 `;
 
 
