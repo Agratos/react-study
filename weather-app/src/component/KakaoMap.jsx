@@ -10,7 +10,7 @@ const KakaoMap = ({setPosition}) => {
         <Wrapper>
             <Map
                 id='map'
-                center={{lat: 38, lng: 127}}
+                center={{lat: 36, lng: 127.5}}
                 style={{
                     width: '100%',
                     height: '100%',
