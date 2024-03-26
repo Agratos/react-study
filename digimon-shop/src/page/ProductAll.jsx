@@ -1,10 +1,32 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
+
+import DigimonCard from '../component/DigimonCard';
 
 const ProductAll = () => {
-    return (
-        <div>
+    const [productList, setProductList] = useState([]);
+    useEffect(() => {
+        getProducts();
+    }, [])
 
-        </div>
+    const getProducts = async() => {
+        const url = 'http://localhost:5000/products';
+        const response = await fetch(url);
+        const data = await response.json();
+        setProductList(data)
+    }
+
+    return (
+        <Container>
+            <Row>
+                {productList.map((item, index) => (
+                    <Col lg={3} key={index}>
+                        <DigimonCard item={item}/>
+                    </Col>
+                ))}
+                
+            </Row>
+        </Container>
     )
 }
 

@@ -18,6 +18,7 @@ const fontFamily = {
 };
 const color = {
     white: '#ebebeb',
+    darkWhite: '#ebebebd1',
     green: '#72e372',
 }
 

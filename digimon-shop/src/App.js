@@ -1,5 +1,8 @@
+import { useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import styled from 'styled-components';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import { 
     Login,
     ProductAll,
@@ -17,22 +20,32 @@ import NavBar from './component/NavBar';
 // 7. 상품을 검색할 수 있다.
 
 const App = () => {
+    const [authenticate, setAuthenticate] = useState(false);
+    
     return (
         <Wrapper>
-            <NavBar />
-            <Routes>
-                <Route path='/' element={<ProductAll />} />
-                <Route path='/login' element={<Login />} />
-                <Route path='/product/:id' element={<ProductDetail />} />
-            </Routes>
+            <NavBar authenticate={authenticate} setAuthenticate={setAuthenticate} />
+            <RoutesWrapper>
+                <Routes>
+                    <Route path='/' element={<ProductAll />} />
+                    <Route path='/login' element={<Login setAuthenticate={setAuthenticate}/>} />
+                    <Route path='/product/:id' element={<ProductDetail />} />
+                </Routes>
+            </RoutesWrapper>
             {/* <Footer /> */}
         </Wrapper>
     );
 }
 const Wrapper = styled.div`
+    display: flex;
+    flex-direction: column;
     width: 100vw;
     height: 100vh;
     background-color: black;
+`;
+const RoutesWrapper = styled.section`
+    flex: 1;
+    margin-top: 60px;
 `;
 
 

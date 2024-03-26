@@ -1,22 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 
-const NavBar = () => {
+const NavBar = ({ authenticate, setAuthenticate }) => {
+    const navigate = useNavigate();
+
     const manueList = [
-        '태아', '유년기', '성장기', '성숙기', '완전체', '궁극체'
+        '태아기', '유년기', '성장기', '성숙기', '완전체', '궁극체'
     ]
+
+    const handleLogInOut = () => {
+        if(authenticate){
+            setAuthenticate(false);
+        } else {
+            navigate('login')
+        }
+    }
+
     return (
         <Wrapper>
             <LoginSection>
                 <FontAwesomeIcon icon={faUser} />
-                <LoginButton>로그인</LoginButton>
+                <LoginButton onClick={handleLogInOut}>
+                    {authenticate ? '로그아웃' : '로그인'}
+                </LoginButton>
             </LoginSection>
             <LogoSection>
-                <img src={require('../asset/digimon-title.png')} />
+                <img src={'../asset/digimon-title.png'} height={160}/>
             </LogoSection>
             <NavSearchSection>
                 <Nav>
@@ -68,6 +82,7 @@ const NavSearchSection = styled.section`
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: 30px;
 `;
 const Nav = styled.nav`
     display: flex;
