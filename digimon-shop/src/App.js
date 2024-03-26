@@ -29,7 +29,11 @@ const App = () => {
         </Wrapper>
     );
 }
-const Wrapper = styled.div` `;
+const Wrapper = styled.div`
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+`;
 
 
 export default App;
