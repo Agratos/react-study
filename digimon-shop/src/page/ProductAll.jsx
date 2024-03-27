@@ -21,11 +21,14 @@ const ProductAll = () => {
         <Container>
             <Row>
                 {productList.map((item, index) => (
-                    <Col lg={3} key={index}>
+                    <Col 
+                        lg={3} 
+                        key={index}
+                        className="my-4"
+                    >
                         <DigimonCard item={item} />
                     </Col>
                 ))}
-                
             </Row>
         </Container>
     )
