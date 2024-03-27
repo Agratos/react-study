@@ -11,7 +11,7 @@ const ProductAll = () => {
     }, [])
 
     const getProducts = async() => {
-        const url = 'https://my-json-server.typicode.com/Agratos/react-study/products'
+        const url = 'https://my-json-server.typicode.com/Agratos/react-study/main/digimon-shop/products'
         const response = await fetch(url);
         const data = await response.json();
         setProductList(data)

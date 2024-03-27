@@ -42,11 +42,14 @@ const ProductDetail = () => {
     }, [])
 
     const getProductDetail = async() => {
-        const url = `https://my-json-server.typicode.com/Agratos/react-study/products/${id}`;
+        const url = `https://my-json-server.typicode.com/Agratos/react-study/main/digimon-shop/products/?id=${id}`;
         const response = await fetch(url);
         const data = await response.json();
-        setProduct(data);
+
+        setProduct(data[0]);
     }
+
+    
 
     return (
         <Wrapper>
