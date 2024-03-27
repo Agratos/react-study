@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -21,6 +21,10 @@ const NavBar = ({ authenticate, setAuthenticate }) => {
         }
     }
 
+    const handleLogoClick = () => {
+        navigate('/');
+    }
+
     return (
         <Wrapper>
             <LoginSection>
@@ -30,7 +34,11 @@ const NavBar = ({ authenticate, setAuthenticate }) => {
                 </LoginButton>
             </LoginSection>
             <LogoSection>
-                <img src={'../asset/digimon-title.png'} height={160}/>
+                <Logo 
+                    src={'../asset/digimon-title.png'} 
+                    onClick={handleLogoClick}
+                    alt={'digimon-title'}
+                />
             </LogoSection>
             <NavSearchSection>
                 <Nav>
@@ -77,6 +85,10 @@ const LogoSection = styled.section`
     display: flex;
     justify-content: center;
     align-items: center;
+`;
+const Logo = styled.img`
+    height: 160px;
+    cursor: pointer;
 `;
 const NavSearchSection = styled.section`
     display: flex;

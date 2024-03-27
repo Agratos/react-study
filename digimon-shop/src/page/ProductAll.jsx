@@ -5,6 +5,7 @@ import DigimonCard from '../component/DigimonCard';
 
 const ProductAll = () => {
     const [productList, setProductList] = useState([]);
+
     useEffect(() => {
         getProducts();
     }, [])
@@ -21,7 +22,7 @@ const ProductAll = () => {
             <Row>
                 {productList.map((item, index) => (
                     <Col lg={3} key={index}>
-                        <DigimonCard item={item}/>
+                        <DigimonCard item={item} />
                     </Col>
                 ))}
                 

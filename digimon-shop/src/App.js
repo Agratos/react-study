@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import styled from 'styled-components';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -29,7 +29,7 @@ const App = () => {
                 <Routes>
                     <Route path='/' element={<ProductAll />} />
                     <Route path='/login' element={<Login setAuthenticate={setAuthenticate}/>} />
-                    <Route path='/product/:id' element={<ProductDetail />} />
+                    <Route path='/product/:id' element={ authenticate ? <ProductDetail /> : <Navigate to='/login' />} />
                 </Routes>
             </RoutesWrapper>
             {/* <Footer /> */}

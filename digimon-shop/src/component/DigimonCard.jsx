@@ -1,11 +1,19 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import styled from 'styled-components';
 
 const DigimonCard = ({item}) => {
+    const navigate = useNavigate();
+
     const { id, img, name, price, choice, type, newProduct } = item;
-    console.log(img === '../asset/아구몬.png')
+
+    const handleCardClick = () => {
+        navigate(`product/${id}`)
+    }
+
     return (
-        <Card>
+        <Card onClick={handleCardClick}>
             { newProduct && <New src={'../asset/new.png'}/>}
             <Img src={img}/>
             <ConsumerChoise>{choice ? 'Consumer choise' : ''}</ConsumerChoise>
@@ -20,12 +28,14 @@ const DigimonCard = ({item}) => {
 const Card = styled.div`
     color: ${({theme}) => theme.color.white};
     position: relative;
+    width: 195px;
+    margin: auto;
     cursor: pointer;
 `;
 const New = styled.img`
     position: absolute;
     width: 50px;
-    right: 66px;
+    right: 0px;
     top: -1px;
 `;
 const Img = styled.img`
@@ -39,7 +49,6 @@ const ConsumerChoise = styled.div`
 const DigimonTitle = styled.div`
     display: flex;
 `;
-const DigimonLable = styled.label``;
 const DigimonType = styled.div``;
 const DigimonName = styled.div`
     margin-left: 10px;
