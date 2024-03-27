@@ -1,0 +1,22 @@
+{
+    "products": [
+        {
+            "id": 0,
+            "img": "../asset/아구몬.png",
+            "name": "아구몬",
+            "price": 1000,
+            "choice": true,
+            "newProduct": true,
+            "type": "성장기"
+        },
+        {
+            "id": 1,
+            "img": "../asset/파피몬.png",
+            "name": "파피몬",
+            "price": 1000,
+            "choice": false,
+            "newProduct": true,
+            "type": "성장기"
+        }
+    ]
+}
