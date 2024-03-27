@@ -51,13 +51,13 @@ const ProductDetail = () => {
     return (
         <Wrapper>
             <Row>
-                <Col lg={8}>
+                <Col>
                     <Card id={'container'}>
                         <Effect id={'overlay'} />
                         <Image src={product?.img} />
                     </Card>
                 </Col>
-                <Col lg={4}>
+                <Col>
                     <Name>{product?.name}</Name>
                     <Type></Type>
                 </Col>
@@ -72,10 +72,11 @@ const Wrapper = styled(Container)`
 const Card = styled.div`
     width: 220px;
     height: 320px;
-    transition: all 0.1s;
+    transition: all 2s;
+    margin: auto;
     cursor: pointer;
     &:hover {
-        transition: none;
+        transition: all 0.1s;
     }
 `;
 const Image = styled.img`
