@@ -42,7 +42,7 @@ const ProductDetail = () => {
     }, [])
 
     const getProductDetail = async() => {
-        const url = `http://localhost:5000/products/${id}`;
+        const url = `https://my-json-server.typicode.com/Agratos/react-study/products/${id}`;
         const response = await fetch(url);
         const data = await response.json();
         setProduct(data);
