@@ -8,11 +8,42 @@
             "choice": true,
             "newProduct": true,
             "type": "성장기"
-        },
-        {
+        },{
             "id": 1,
             "img": "../asset/파피몬.png",
             "name": "파피몬",
+            "price": 1000,
+            "choice": false,
+            "newProduct": true,
+            "type": "성장기"
+        },{
+            "id": 2,
+            "img": "../asset/파닥몬.png",
+            "name": "파닥몬",
+            "price": 1000,
+            "choice": false,
+            "newProduct": false,
+            "type": "성장기"
+        },{
+            "id": 3,
+            "img": "../asset/쉬라몬.png",
+            "name": "쉬라몬",
+            "price": 1000,
+            "choice": true,
+            "newProduct": true,
+            "type": "성장기"
+        },{
+            "id": 4,
+            "img": "../asset/피요몬.png",
+            "name": "피요몬",
+            "price": 1000,
+            "choice": true,
+            "newProduct": false,
+            "type": "성장기"
+        },{
+            "id": 5,
+            "img": "../asset/가트몬.png",
+            "name": "가트몬",
             "price": 1000,
             "choice": false,
             "newProduct": true,
