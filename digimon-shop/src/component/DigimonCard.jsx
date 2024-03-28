@@ -6,7 +6,7 @@ import styled from 'styled-components';
 const DigimonCard = ({item}) => {
     const navigate = useNavigate();
 
-    const { id, img, name, price, choice, type, newProduct } = item;
+    const { id, img, name, stage, price, choice, newProduct } = item;
 
     const handleCardClick = () => {
         navigate(`product/${id}`)
@@ -18,7 +18,7 @@ const DigimonCard = ({item}) => {
             <Img src={img}/>
             <ConsumerChoise>{choice ? 'Consumer choise' : ''}</ConsumerChoise>
             <DigimonTitle>
-                <DigimonType>{type}</DigimonType>
+                <DigimonType>{stage}</DigimonType>
                 <DigimonName>{name}</DigimonName>
             </DigimonTitle>
             <DigimonPrice>{price}원</DigimonPrice>
@@ -43,8 +43,8 @@ const Img = styled.img`
 `;
 const ConsumerChoise = styled.div`
     font-size: 11px;
-    height: 20px;
-    color: #f7f797;
+    height: 16px;
+    color: #83deee;
 `;
 const DigimonTitle = styled.div`
     display: flex;
@@ -52,6 +52,7 @@ const DigimonTitle = styled.div`
 const DigimonType = styled.div``;
 const DigimonName = styled.div`
     margin-left: 10px;
+    color: #ebebac;
 `;
 const DigimonPrice = styled.div``;
 

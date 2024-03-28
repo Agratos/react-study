@@ -21,8 +21,8 @@ const ProductDetail = () => {
                 const x = e.offsetX;
                 const y = e.offsetY;
     
-                const rotateX = 4/30 * y - 20;
-                const rotateY = -1/5 * x + 20;
+                const rotateX = 4/50 * y - 20;
+                const rotateY = -1/6 * x + 20;
     
                 overlay.style.cssText = `
                     filter: brightness(1.2) opacity(0.8);
@@ -53,7 +53,6 @@ const ProductDetail = () => {
         <Wrapper>
             <Row>
                 <Col>
-                    {/* <Name>{product?.name}</Name> */}
                     <Card id={'container'}>
                         <Effect id={'overlay'} />
                         <Image src={product?.img} />
@@ -63,23 +62,25 @@ const ProductDetail = () => {
                     <InfoWrapper>
                         <InfoBox>
                             <InfoLabel>이름</InfoLabel>
-                            <Info>아구몬</Info>
+                            <Info>{product?.name}</Info>
                         </InfoBox>
                         <InfoBox>
                             <InfoLabel>형태</InfoLabel>
-                            <Info>성장기</Info>
+                            <Info>{product?.stage}</Info>
                         </InfoBox>
                         <InfoBox>
                             <InfoLabel>속성</InfoLabel>
-                            <Info>백신종</Info>
+                            <Info>{product?.property}</Info>
                         </InfoBox>
                         <InfoBox>
                             <InfoLabel>유형</InfoLabel>
-                            <Info>파충류형</Info>
+                            <Info>{product?.form}</Info>
                         </InfoBox>
                     </InfoWrapper>
                 </Col>
             </Row>
+            <PurchaseButton>카트 담기</PurchaseButton>
+            {/* <PurchaseButton>바로 구매</PurchaseButton> */}
         </Wrapper>
     )
 }
@@ -133,6 +134,22 @@ const InfoLabel = styled.div`
 `;
 const Info = styled.div`
     font-size: 32px;
+    color: ${({theme}) => theme.color.white};
+`;
+const PurchaseButton = styled.button`
+    border: none;
+    border-radius: 16px;
+    background-color: #b9d2b9;
+    font-size: 16px;
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+    cursor: pointer;
+    &:hover {
+        background-color: #8fb2fd;
+        transition: 1s;
+        border: 1px solid white;
+    }
 `;
 
 export default ProductDetail;
