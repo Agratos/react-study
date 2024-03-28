@@ -3,51 +3,63 @@
         {
             "id": 0,
             "img": "../asset/아구몬.png",
-            "name": "아구몬1111",
+            "name": "아구몬",
+            "stage": "성장기",
+            "property": "백신종",
+            "form": "파충류형",
             "price": 1000,
             "choice": true,
-            "newProduct": true,
-            "type": "성장기"
+            "newProduct": true
         },{
             "id": 1,
             "img": "../asset/파피몬.png",
             "name": "파피몬",
+            "stage": "성장기",
+            "property": "데이터종",
+            "form": "파충류형",
             "price": 1000,
             "choice": false,
-            "newProduct": true,
-            "type": "성장기"
+            "newProduct": true
         },{
             "id": 2,
             "img": "../asset/파닥몬.png",
             "name": "파닥몬",
+            "stage": "성장기",
+            "property": "데이터종",
+            "form": "포유류형",
             "price": 1000,
             "choice": false,
-            "newProduct": false,
-            "type": "성장기"
+            "newProduct": false
         },{
             "id": 3,
             "img": "../asset/쉬라몬.png",
             "name": "쉬라몬",
+            "stage": "성장기",
+            "property": "백신종",
+            "form": "바다짐승형",
             "price": 1000,
             "choice": true,
-            "newProduct": true,
-            "type": "성장기"
+            "newProduct": true
         },{
             "id": 4,
             "img": "../asset/피요몬.png",
             "name": "피요몬",
+            "stage": "성장기",
+            "property": "백신종",
+            "form": "병아리형",
             "price": 1000,
             "choice": true,
-            "newProduct": false,
-            "type": "성장기"
+            "newProduct": false
         },{
             "id": 5,
             "img": "../asset/가트몬.png",
             "name": "가트몬",
+            "stage": "성장기",
+            "property": "백신종",
+            "form": "성수형",
             "price": 1000,
             "choice": false,
-            "newProduct": true,
-            "type": "성장기"
+            "newProduct": true
         }
     ]
 }
