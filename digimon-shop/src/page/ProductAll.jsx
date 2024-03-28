@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Container, Row, Col } from 'react-bootstrap';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import DigimonCard from '../component/DigimonCard';
 
-const ProductAll = () => {
+const ProductAll = ({ isMobile }) => {
     const [productList, setProductList] = useState([]);
     const [query, setQuery] = useSearchParams();
 
@@ -30,6 +30,7 @@ const ProductAll = () => {
                         key={index}
                         className="my-4"
                         sm={9}
+                        isMobile={isMobile}
                     >
                         <DigimonCard item={item} />
                     </CardWrapper>
@@ -42,7 +43,9 @@ const Wrapper = styled(Container)`
     box-sizing: border-box;
 `;
 const CardWrapper = styled(Col)`
-    margin: auto;
+    ${({isMobile}) => isMobile && css`
+        margin: auto;
+    `}
 `;
 
 export default ProductAll;

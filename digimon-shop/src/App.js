@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import styled from 'styled-components';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -21,13 +21,26 @@ import NavBar from './component/NavBar';
 
 const App = () => {
     const [authenticate, setAuthenticate] = useState(false);
-    
+    const [isMobile, setIsMobile] = useState(window.outerWidth < 800);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.outerWidth < 800);
+        }
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        }
+    }, [])
+
     return (
         <Wrapper>
-            <NavBar authenticate={authenticate} setAuthenticate={setAuthenticate} />
+            <NavBar authenticate={authenticate} setAuthenticate={setAuthenticate} isMobile={isMobile} />
             <RoutesWrapper>
                 <Routes>
-                    <Route path='/' element={<ProductAll />} />
+                    <Route path='/' element={<ProductAll isMobile={isMobile} />} />
                     <Route path='/login' element={<Login setAuthenticate={setAuthenticate}/>} />
                     <Route path='/product/:id' element={ authenticate ? <ProductDetail /> : <Navigate to='/login' />} />
                 </Routes>

@@ -1,33 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { faSearch, faBars } from '@fortawesome/free-solid-svg-icons';
 import { Offcanvas } from 'react-bootstrap';
 
 
-const NavBar = ({ authenticate, setAuthenticate }) => {
+const NavBar = ({ authenticate, setAuthenticate, isMobile }) => {
     const navigate = useNavigate();
     const [navClick, setNavClick] = useState('');
-    const [isMobile, setIsMobile] = useState();
     const [isShow, setIsShow] = useState(false);
 
     const manueList = [
         '태아기', '유년기', '성장기', '성숙기', '완전체', '궁극체'
     ]  
-
-    useEffect(() => {
-        const handleResize = () => {
-            setIsMobile(window.outerWidth < 800);
-        }
-
-        window.addEventListener('resize', handleResize);
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        }
-    }, [])
 
     useEffect(() => {
         handleNavClick();
@@ -77,9 +64,9 @@ const NavBar = ({ authenticate, setAuthenticate }) => {
                 />
             </LogoSection>
             {isMobile ?
-                <SideBar>
+                <SideBarButton>
                     <FontAwesomeIcon icon={faBars} onClick={handleShow} size='2x'/>
-                </SideBar>
+                </SideBarButton>
                 :
                 <NavSearchSection>
                     <Nav>
@@ -97,7 +84,17 @@ const NavBar = ({ authenticate, setAuthenticate }) => {
                 </NavSearchSection>
             }
             {isShow && 
-                <Offcanvas show={isShow} onHide={handleClose}></Offcanvas>
+                <SideBar show={isShow} onHide={handleClose}>
+                    <Nav isMobile={isMobile}>
+                        {manueList.map((item, index) => (
+                            <NavButton 
+                                key={item + index}
+                                onClick={() => setNavClick(item)}
+                                isMobile={isMobile}
+                            >{item}</NavButton>
+                        ))}
+                    </Nav>
+                </SideBar>
             }
         </Wrapper>
     )
@@ -146,6 +143,11 @@ const Nav = styled.nav`
     display: flex;
     list-style-type: none;
     padding: 0px;
+    ${({isMobile}) => isMobile && css`
+        flex-direction: column;
+        align-items: center;
+        padding-top: 16px;
+    `}
 `;
 const NavButton = styled.li`
     color: ${({theme}) => theme.color.white};
@@ -154,10 +156,22 @@ const NavButton = styled.li`
     margin-top: 16px;
     text-align: center;
     cursor: pointer;
-    &:hover {
-        color: ${({theme}) => theme.color.green};
-        font-size: 20px;
-    }
+    ${({isMobile}) => isMobile ? 
+    css`
+        color: black;
+        font-size: 30px;
+        ${({theme}) => theme.fontFamily.jua}
+        margin: 16px ;
+        &:hover {
+            color: #acac14
+        }
+    ` :
+    css`
+        &:hover {
+            color: ${({theme}) => theme.color.green};
+            font-size: 20px;
+        }
+    `}
 `;
 const SearchSection = styled.section`
     position: absolute;
@@ -178,12 +192,16 @@ const SearchInput = styled.input`
         width: 140px;
     }
 `;
-const SideBar = styled.div`
+const SideBarButton = styled.div`
     position: absolute;
     top: 0;
     margin: 16px;
     cursor: pointer;
     width: 40px;
+`;
+const SideBar = styled(Offcanvas)`
+    max-width: 200px;
+    background-color: #c4effbff;
 `;
 
 export default NavBar;
