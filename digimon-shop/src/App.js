@@ -39,7 +39,9 @@ const App = () => {
 const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
-    width: 100vw;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
     min-height: 100vh;
     background-color: black;
 `;

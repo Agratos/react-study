@@ -59,12 +59,13 @@ const NavBar = ({ authenticate, setAuthenticate }) => {
 }
 const Wrapper = styled.div`
     color: ${({theme}) => theme.color.white};
+    width: 100%;
 `;
 const LoginSection = styled.section`
     display: flex;
     justify-content: end;
     align-items: center;
-    width: 100vw;
+    width: 100%;
     padding: 16px;
     box-sizing: border-box;
 `;

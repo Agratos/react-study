@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
+import styled from 'styled-components';
 
 import DigimonCard from '../component/DigimonCard';
 
@@ -18,20 +19,30 @@ const ProductAll = () => {
     }
 
     return (
-        <Container>
-            <Row>
+        <Wrapper>
+            <Test>
                 {productList.map((item, index) => (
-                    <Col 
+                    <Test2 
                         lg={3} 
                         key={index}
                         className="my-4"
+                        sm={9}
                     >
                         <DigimonCard item={item} />
-                    </Col>
+                    </Test2>
                 ))}
-            </Row>
-        </Container>
+            </Test>
+        </Wrapper>
     )
 }
+const Wrapper = styled(Container)`
+    box-sizing: border-box;
+`;
+const Test = styled(Row)`
+    box-sizing: border-box;
+`;
+const Test2 = styled(Col)`
+    box-sizing: border-box;
+`;
 
 export default ProductAll;

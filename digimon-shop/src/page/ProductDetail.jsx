@@ -83,15 +83,15 @@ const Card = styled.div`
     }
 `;
 const Image = styled.img`
-    width: 220px;
+    width: 240px;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
 `;
 const Effect = styled.div`
     position: absolute;
-    width: 240px;
-    height: 188px;
+    width: 260px;
+    height: 196px;
     background: linear-gradient(
         105deg, 
         transparent 40%, 
