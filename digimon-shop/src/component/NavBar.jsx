@@ -13,7 +13,7 @@ const NavBar = ({ authenticate, setAuthenticate, isMobile }) => {
     const [isShow, setIsShow] = useState(false);
 
     const manueList = [
-        '태아기', '유년기', '성장기', '성숙기', '완전체', '궁극체'
+        '유년기', '성장기', '성숙기', '완전체', '궁극체'
     ]  
 
     useEffect(() => {

@@ -60,6 +60,106 @@
             "price": 1000,
             "choice": false,
             "newProduct": true
+        },{
+            "id": 6,
+            "img": "../asset/플롯트몬.png",
+            "name": "플롯트몬",
+            "stage": "성장기",
+            "property": "백신종",
+            "form": "포유류형",
+            "price": 1000,
+            "choice": false,
+            "newProduct": true
+        },{
+            "id": 7,
+            "img": "../asset/야옹몬.png",
+            "name": "야옹몬",
+            "stage": "유년기",
+            "property": "",
+            "form": "렛서형",
+            "price": 1000,
+            "choice": false,
+            "newProduct": false
+        },{
+            "id": 8,
+            "img": "../asset/메탈그레이몬.png",
+            "name": "메탈그레이몬",
+            "stage": "완전체",
+            "property": "백신종",
+            "form": "사이보그형",
+            "price": 1000,
+            "choice": false,
+            "newProduct": false
+        },{
+            "id": 9,
+            "img": "../asset/메탈가루몬.png",
+            "name": "메탈가루몬",
+            "stage": "궁극체",
+            "property": "데이터종",
+            "form": "사이보그형",
+            "price": 1000,
+            "choice": false,
+            "newProduct": false
+        },{
+            "id": 10,
+            "img": "../asset/엔젤몬.png",
+            "name": "엔젤몬",
+            "stage": "성숙기",
+            "property": "백신종",
+            "form": "천사형",
+            "price": 1000,
+            "choice": false,
+            "newProduct": false
+        },{
+            "id": 11,
+            "img": "../asset/홀리엔젤몬.png",
+            "name": "홀리엔젤몬",
+            "stage": "완전체",
+            "property": "백신종",
+            "form": "대천사형",
+            "price": 1000,
+            "choice": false,
+            "newProduct": false
+        },{
+            "id": 12,
+            "img": "../asset/세라피몬.png",
+            "name": "세라피몬",
+            "stage": "궁극체",
+            "property": "백신종",
+            "form": "3대천사, 치천사형",
+            "price": 10000,
+            "choice": true,
+            "newProduct": true
+        },{
+            "id": 13,
+            "img": "../asset/토코몬.png",
+            "name": "토코몬",
+            "stage": "유년기",
+            "property": "",
+            "form": "렛서형",
+            "price": 100,
+            "choice": false,
+            "newProduct": true
+        },{
+            "id": 14,
+            "img": "../asset/엔젤우몬.png",
+            "name": "엔젤우몬",
+            "stage": "완전체",
+            "property": "백신종",
+            "form": "대천사형",
+            "price": 70000,
+            "choice": true,
+            "newProduct": true
+        },{
+            "id": 15,
+            "img": "../asset/코로몬.png",
+            "name": "코로몬",
+            "stage": "유년기",
+            "property": "",
+            "form": "렛서형",
+            "price": 1000,
+            "choice": false,
+            "newProduct": true
         }
     ]
 }
