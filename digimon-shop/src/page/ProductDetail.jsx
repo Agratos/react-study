@@ -147,8 +147,8 @@ const PurchaseButton = styled.button`
     cursor: pointer;
     &:hover {
         background-color: #8fb2fd;
-        transition: 1s;
         border: 1px solid white;
+        padding: 9px;
     }
 `;
 
