@@ -2,9 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
     body{
-        width: calc(100vw - 17px);
-        max-width: calc(100vw - 17px);
-        
+        width:100%;
         min-height: 100vh;
 
         margin: 0;

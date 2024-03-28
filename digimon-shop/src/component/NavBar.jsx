@@ -1,17 +1,37 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faBars } from '@fortawesome/free-solid-svg-icons';
+import { Offcanvas } from 'react-bootstrap';
 
 
 const NavBar = ({ authenticate, setAuthenticate }) => {
     const navigate = useNavigate();
+    const [navClick, setNavClick] = useState('');
+    const [isMobile, setIsMobile] = useState();
+    const [isShow, setIsShow] = useState(false);
 
     const manueList = [
         '태아기', '유년기', '성장기', '성숙기', '완전체', '궁극체'
-    ]
+    ]  
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.outerWidth < 800);
+        }
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        }
+    }, [])
+
+    useEffect(() => {
+        handleNavClick();
+    }, [navClick])
 
     const handleLogInOut = () => {
         if(authenticate){
@@ -24,6 +44,22 @@ const NavBar = ({ authenticate, setAuthenticate }) => {
     const handleLogoClick = () => {
         navigate('/');
     }
+
+    const handleSearch = (e) => {
+        if(e.key === 'Enter'){
+            const keyword = e.target.value;
+
+            navigate(`/?q=${keyword}`);
+        }
+    }
+
+    const handleNavClick = () => {
+        navigate(`/?q=${navClick}`);
+    }
+
+    const handleClose = () => setIsShow(false);
+
+    const handleShow = () => setIsShow(true);
 
     return (
         <Wrapper>
@@ -40,20 +76,29 @@ const NavBar = ({ authenticate, setAuthenticate }) => {
                     alt={'digimon-title'}
                 />
             </LogoSection>
-            <NavSearchSection>
-                <Nav>
-                    {manueList.map((item, index) => (
-                        <NavButton 
-                            key={item + index}
-                            onClick={() => console.log(item)}
-                        >{item}</NavButton>
-                    ))}
-                </Nav>
-                <SearchSection>
-                    <FontAwesomeIcon icon={faSearch} />
-                    <SearchInput />
-                </SearchSection>
-            </NavSearchSection>
+            {isMobile ?
+                <SideBar>
+                    <FontAwesomeIcon icon={faBars} onClick={handleShow} size='2x'/>
+                </SideBar>
+                :
+                <NavSearchSection>
+                    <Nav>
+                        {manueList.map((item, index) => (
+                            <NavButton 
+                                key={item + index}
+                                onClick={() => setNavClick(item)}
+                            >{item}</NavButton>
+                        ))}
+                    </Nav>
+                    <SearchSection>
+                        <FontAwesomeIcon icon={faSearch} />
+                        <SearchInput type={'text'} onKeyPress={(e) => handleSearch(e)}/>
+                    </SearchSection>
+                </NavSearchSection>
+            }
+            {isShow && 
+                <Offcanvas show={isShow} onHide={handleClose}></Offcanvas>
+            }
         </Wrapper>
     )
 }
@@ -132,6 +177,13 @@ const SearchInput = styled.input`
         caret-color: ${({theme}) => theme.color.white};
         width: 140px;
     }
+`;
+const SideBar = styled.div`
+    position: absolute;
+    top: 0;
+    margin: 16px;
+    cursor: pointer;
+    width: 40px;
 `;
 
 export default NavBar;

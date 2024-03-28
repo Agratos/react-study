@@ -54,7 +54,7 @@
             "id": 5,
             "img": "../asset/가트몬.png",
             "name": "가트몬",
-            "stage": "성장기",
+            "stage": "성숙기",
             "property": "백신종",
             "form": "성수형",
             "price": 1000,
