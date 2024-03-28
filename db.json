@@ -132,26 +132,6 @@
             "newProduct": true
         },{
             "id": 13,
-            "img": "../asset/토코몬.png",
-            "name": "토코몬",
-            "stage": "유년기",
-            "property": "",
-            "form": "렛서형",
-            "price": 100,
-            "choice": false,
-            "newProduct": true
-        },{
-            "id": 14,
-            "img": "../asset/엔젤우몬.png",
-            "name": "엔젤우몬",
-            "stage": "완전체",
-            "property": "백신종",
-            "form": "대천사형",
-            "price": 70000,
-            "choice": true,
-            "newProduct": true
-        },{
-            "id": 15,
             "img": "../asset/코로몬.png",
             "name": "코로몬",
             "stage": "유년기",

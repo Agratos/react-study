@@ -18,6 +18,12 @@ const ProductAll = ({ isMobile }) => {
         const url = `https://my-json-server.typicode.com/Agratos/react-study/main/digimon-shop/products?q=${searchQuery}`
         const response = await fetch(url);
         const data = await response.json();
+        if (data.length < 4) {
+            const newDataLength = 4 - data.length;
+            for (let i = 0; i < newDataLength; i++) {
+                data.push({}); // 빈 데이터를 추가합니다.
+            }
+        }
         setProductList(data);
     }
 
@@ -29,7 +35,6 @@ const ProductAll = ({ isMobile }) => {
                         lg={3} 
                         key={index}
                         className="my-4"
-                        sm={9}
                         isMobile={isMobile}
                     >
                         <DigimonCard item={item} />

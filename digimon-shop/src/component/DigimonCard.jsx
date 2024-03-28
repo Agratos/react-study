@@ -12,7 +12,8 @@ const DigimonCard = ({item}) => {
         navigate(`product/${id}`)
     }
 
-    return (
+    return ( 
+        item.name ? 
         <Card onClick={handleCardClick}>
             { newProduct && <New src={'../asset/new.png'}/>}
             <Img src={img}/>
@@ -23,6 +24,8 @@ const DigimonCard = ({item}) => {
             </DigimonTitle>
             <DigimonPrice>{price}원</DigimonPrice>
         </Card>
+        :
+        <Card />
     )
 }
 const Card = styled.div`
