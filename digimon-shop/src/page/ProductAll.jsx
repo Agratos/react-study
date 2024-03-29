@@ -18,12 +18,6 @@ const ProductAll = ({ isMobile }) => {
         const url = `https://my-json-server.typicode.com/Agratos/react-study/main/digimon-shop/products?q=${searchQuery}`
         const response = await fetch(url);
         const data = await response.json();
-        if (data.length < 4) {
-            const newDataLength = 4 - data.length;
-            for (let i = 0; i < newDataLength; i++) {
-                data.push({}); // 빈 데이터를 추가합니다.
-            }
-        }
         setProductList(data);
     }
 
@@ -46,6 +40,7 @@ const ProductAll = ({ isMobile }) => {
 }
 const Wrapper = styled(Container)`
     box-sizing: border-box;
+    width: 1000px;
 `;
 const CardWrapper = styled(Col)`
     ${({isMobile}) => isMobile && css`
