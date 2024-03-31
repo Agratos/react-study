@@ -8,11 +8,11 @@ let initialStat = {
 const reducer = (state = initialStat, action) => {
     switch(action.type){
         case "SETNUM":
-            return { ...state, num: state.payload.num };
+            return { ...state, num: action.payload.num };
         case "INCREMENT":
-            return { ...state, count: state.count + state.num};
+            return { ...state, count: state.count + Number(state.num)};
         case "DECREMENT":
-            return { ...state, count: state.count - state.num};
+            return { ...state, count: state.count -  Number(state.num)};
         case "LOGIN":
             return { 
                 ...state, 
