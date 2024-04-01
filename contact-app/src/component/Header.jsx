@@ -43,7 +43,7 @@ const Header = () => {
             <Logo src={'asset/logo.png'} />
             <Title>주소록</Title>
             <InputWrapper>
-                {<Input onChange={(e) => handleSearch(e.target.value)} width={isSearch ? '120px' : '0px'} />}
+                <Input onChange={(e) => handleSearch(e.target.value)} width={isSearch ? '120px' : '0px'} />
                 <IconWrapper size='24px' onClick={() => setIsSearch(!isSearch)}>
                     <FontAwesomeIcon icon={faMagnifyingGlass} />
                 </IconWrapper>

@@ -6,11 +6,11 @@ import SearchBox from './SearchBox'
 
 const ContactList = () => {
     const {contactList, searchName, favorit } = useSelector(state => state);
-
+    console.log(searchName)
     return (
         <Wrapper>
             <ContactListWrapper>
-                {contactList.filter(({name, favorit: contactFavoit}) => name.includes(searchName) && favorit ? contactFavoit : true).map((item, index) => (
+                {contactList.filter(({name, favorit: contactFavoit}) => favorit ? name.includes(searchName) && contactFavoit : name.includes(searchName)).map((item, index) => (
                     <ContactItem key={index} {...item} />
                 ))}
             </ContactListWrapper>

@@ -32,7 +32,6 @@ const reducer = (state = initstate, action) => {
                 contactList: contactList.filter(({id}) => id !== payload.id)
             }
         case 'CHANGE_CONTACT':
-            console.log(payload)
             return {
                 ...state,
                 contactList: contactList.map(contact => 

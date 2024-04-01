@@ -4,13 +4,7 @@ import { Modal } from 'react-bootstrap';
 import styled from 'styled-components';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
-
-import { 
-    nameValidate,
-    phoneValidate,
-    emailValidate
- } from '../util/validate';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 const ContactFrom = () => {
     const dispatch = useDispatch();
@@ -31,7 +25,7 @@ const ContactFrom = () => {
 
     const reset = () => {
         setName('');
-        setPhone('');
+        setPhone('010');
         setEmail('');
         setImage('');
     }
@@ -54,7 +48,7 @@ const ContactFrom = () => {
             setImage(e.target.files[0])
         }
     }
-    console.log(image)
+
     return (
         <Modal 
             show={idModal} 
