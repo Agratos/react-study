@@ -76,6 +76,7 @@ const Label = styled.div`
     margin-bottom: 4px;
 `;
 const Input = styled.input`
+    ${({theme}) => theme.fontFamily.apple}
     padding: 4px;
     width: 100%;
     margin-bottom: 16px;

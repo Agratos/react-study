@@ -60,8 +60,7 @@ const ButtonWrapper = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    padding-top: 4px;
-    padding-bottom: 8px;
+    padding: 6px 10px 10px 0;
 `;
 const Button = styled.button`
     border: none;
