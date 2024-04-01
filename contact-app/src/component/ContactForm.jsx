@@ -1,19 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Modal } from 'react-bootstrap';
 import styled from 'styled-components';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
+
+import { 
+    nameValidate,
+    phoneValidate,
+    emailValidate
+ } from '../util/validate';
 
 const ContactFrom = () => {
     const dispatch = useDispatch();
     const idModal = useSelector(state => state.idModal)
     const [name, setName] = useState('');
-    const [phone, setPhone] = useState('');
+    const [phone, setPhone] = useState('010');
     const [email, setEmail] = useState('');
+    const [image, setImage] = useState('');
+    const fileInputRef = useRef(null);
 
     const onSubmit = (e) => {
         e.preventDefault();
 
-        dispatch({type: 'ADD_CONTACT', payload: { name, phone, email, favorit: false }});
+        dispatch({type: 'ADD_CONTACT', payload: { name, phone, email, image, favorit: false }});
         hideModal();
         reset();
     }
@@ -22,6 +33,7 @@ const ContactFrom = () => {
         setName('');
         setPhone('');
         setEmail('');
+        setImage('');
     }
 
     const hideModal = () => {
@@ -33,6 +45,16 @@ const ContactFrom = () => {
         })
     }
 
+    const uploadButton = () => {
+        fileInputRef.current.click();
+    }
+
+    const handleImage = (e) => {
+        if(e.target.files.length !== 0){
+            setImage(e.target.files[0])
+        }
+    }
+    console.log(image)
     return (
         <Modal 
             show={idModal} 
@@ -42,13 +64,33 @@ const ContactFrom = () => {
             centered
         >
             <Form onSubmit={(e) => onSubmit(e)}>
+                <ImageUploadWrapper>
+                    <ImageUpload 
+                        type='file'
+                        ref={fileInputRef}
+                        onChange={(e) => handleImage(e)}
+                    /> 
+                    {image === '' ? 
+                        <UploadWrapper>
+                            <UploadIcon onClick={uploadButton}>
+                                <FontAwesomeIcon icon={faPlus} /> 
+                                <UploadLabel>Image</UploadLabel>
+                            </UploadIcon>
+                        </UploadWrapper>
+                        : 
+                        <ImageWrapper>
+                            <Image src={URL.createObjectURL(image)} onClick={uploadButton}/>
+                            <UploadLabel onClick={() => setImage('')}>Delete</UploadLabel>
+                        </ImageWrapper>
+                    }
+                </ImageUploadWrapper>
                 <InputWrrapper>
                     <Label>이름</Label>
                     <Input value={name} onChange={(e) => setName(e.target.value)} />
                 </InputWrrapper>
                 <InputWrrapper>
                     <Label>번호</Label>
-                    <Input value={phone} onChange={(e) => setPhone(e.target.value)} />
+                    <Input type={'number'} value={phone} onChange={(e) => setPhone(e.target.value)} />
                 </InputWrrapper>
                 <InputWrrapper>
                     <Label>이메일</Label>
@@ -83,6 +125,10 @@ const Input = styled.input`
     &:focus {
         outline: none;
     }
+    &::-webkit-inner-spin-button,::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
 `;
 const Button = styled.button`
     border: none;
@@ -95,6 +141,56 @@ const Button = styled.button`
     &:hover {
         background-color: #e3e316;
     }
+`;
+const ImageUploadWrapper = styled.div`
+    position: relative;
+`;
+const UploadWrapper = styled.div``;
+const ImageUpload = styled.input`
+    display: none;
+`;
+const ImageWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+`;
+const Image = styled.img`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+    border: 2px solid black;
+    overflow: hidden;
+    cursor: pointer;
+`;
+const Icon = styled.div`
+    position: absolute;
+    right: -4px;
+    top: -8px;
+    cursor: pointer;
+`;
+const UploadIcon = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    border: 2px solid black;
+    border-radius: 8px;
+    cursor: pointer;
+`;
+const UploadLabel = styled.label`
+    position: absolute;
+    right: -80px;
+    bottom: -4px;
+    cursor: pointer;
 `;
 
 export default ContactFrom;

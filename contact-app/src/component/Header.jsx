@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faPlus, faStar as fillStar } from '@fortawesome/free-solid-svg-icons';
 import { faStar  } from '@fortawesome/free-regular-svg-icons';
@@ -8,6 +8,7 @@ import { faStar  } from '@fortawesome/free-regular-svg-icons';
 const Header = () => {
     const dispatch = useDispatch();
     const favorit = useSelector(state => state.favorit);
+    const [isSearch, setIsSearch] = useState(false);
 
     const handleFavorit = (value) => {
         dispatch({
@@ -27,13 +28,23 @@ const Header = () => {
         })
     }
 
+    
+    const handleSearch = (searchName) => {
+        dispatch({
+            type: 'SEARCH_NAME',
+            payload: {
+                searchName
+            }
+        })
+    }
+
     return (
         <Wrapper>
             <Logo src={'asset/logo.png'} />
             <Title>주소록</Title>
             <InputWrapper>
-                <Input />
-                <IconWrapper size='24px'>
+                {<Input onChange={(e) => handleSearch(e.target.value)} width={isSearch ? '120px' : '0px'} />}
+                <IconWrapper size='24px' onClick={() => setIsSearch(!isSearch)}>
                     <FontAwesomeIcon icon={faMagnifyingGlass} />
                 </IconWrapper>
             </InputWrapper>
@@ -78,14 +89,18 @@ const InputWrapper = styled.div`
     justify-content: end;
 `;
 const Input = styled.input`
-    width: 200px;
+    width: ${({width}) => width};
     border: none;
     border-bottom: 1px solid black;
     background-color: inherit;
     font-size: 20px;
+    transition: 1s;
     &:focus {
         outline: none;
     }
+    ${({width}) => width === '0px' && css`
+        padding: 0;
+    `}
 `;
 const IconWrapper = styled.div`
     font-size: ${({size}) => size};

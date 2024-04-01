@@ -29,7 +29,7 @@ const Wrapper = styled.div`
     height: 100vh;
 `;
 const ContactWrapper = styled.div`
-    width: 500px;
+    width: 400px;
     height: 700px;
     border: 1px solid black;
     border-radius: 8px;

@@ -1,25 +1,31 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar as fillStar, faMinus } from '@fortawesome/free-solid-svg-icons';
+import { faStar as fillStar, faMinus, faUser } from '@fortawesome/free-solid-svg-icons';
 import { faStar  } from '@fortawesome/free-regular-svg-icons';
 
-const ContactItem = ({ name, phone, email, favorit }) => {
+const ContactItem = ({ id, name, phone, email, image, favorit }) => {
     const dispatch = useDispatch();
 
     const deleteContact = () => {
-        dispatch({type: 'REMOVE_CONTACT', payload: {name, phone, email}})
+        dispatch({type: 'REMOVE_CONTACT', payload: {id}})
     }
 
     const changeFavorit = (value) => {
-        dispatch({type: 'CHANGE_CONTACT', payload: {name, phone, email, favorit: value}});
+        dispatch({type: 'CHANGE_CONTACT', payload: {id, favorit: value}});
     }
-
+    
     return (
         <Wrapper>
-            <Image src={'asset/unkown.png'} />
+            {image ? 
+                <Image src={image ? URL.createObjectURL(image) : 'asset/unkown.png'} /> 
+                : 
+                <IconWrapper>
+                    <FontAwesomeIcon icon={faUser} /> 
+                </IconWrapper>
+            }
             <TextWrapper>
                 <Text>{name}</Text>
                 <Text>{phone}</Text>
@@ -44,7 +50,16 @@ const Wrapper = styled.div`
     border-bottom: 1px solid #c9c9c9ff;
 `;
 const Image = styled.img`
-    width: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 80px;
+    border: 1px solid black;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: auto 8px;   
 `;
 const TextWrapper = styled.div`
     flex: 1;
@@ -66,6 +81,19 @@ const Button = styled.button`
     border: none;
     background-color: inherit;
     font-size: ${({size}) => size ? size : '24px'};
+`;
+const IconWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
+    height: 80px;
+    border: 1px solid black;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: auto 8px;
+    font-size: 40px;
 `;
 
 

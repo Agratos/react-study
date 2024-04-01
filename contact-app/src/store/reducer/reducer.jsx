@@ -6,18 +6,22 @@ const initstate = {
 }
 
 const reducer = (state = initstate, action) => {
+    const { contactList } = state
     const { type, payload } = action;
 
     switch(type){
         case 'ADD_CONTACT':
+            const newId = contactList.length > 0 ? contactList[contactList.length - 1].id + 1 : 1;
             return {
                 ...state, 
                 contactList: [
-                    ...state.contactList, 
+                    ...contactList, 
                     { 
+                        id: newId,
                         name: payload.name, 
                         phone: payload.phone,
                         email: payload.email,
+                        image: payload.image,
                         favorit: payload.favorit,
                     }
                 ]
@@ -25,14 +29,14 @@ const reducer = (state = initstate, action) => {
         case 'REMOVE_CONTACT':
             return {
                 ...state,
-                contactList: state.contactList.filter(({name, phone, email}) => name !== payload.name && phone !== payload.phone && email !== payload.email)
+                contactList: contactList.filter(({id}) => id !== payload.id)
             }
         case 'CHANGE_CONTACT':
             console.log(payload)
             return {
                 ...state,
-                contactList: state.contactList.map(contact => 
-                    contact.name === payload.name && contact.phone === payload.phone && contact.email === payload.email 
+                contactList: contactList.map(contact => 
+                    contact.id === payload.id
                     ? { ...contact, favorit: payload.favorit } 
                     : contact
                 )
