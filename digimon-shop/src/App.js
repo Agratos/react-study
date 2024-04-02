@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -20,7 +21,7 @@ import NavBar from './component/NavBar';
 // 7. 상품을 검색할 수 있다.
 
 const App = () => {
-    const [authenticate, setAuthenticate] = useState(false);
+    const authenticate = useSelector(state => state.auth.authenticate)
     const [isMobile, setIsMobile] = useState(window.outerWidth < 800);
 
     useEffect(() => {
@@ -37,11 +38,11 @@ const App = () => {
 
     return (
         <Wrapper>
-            <NavBar authenticate={authenticate} setAuthenticate={setAuthenticate} isMobile={isMobile} />
+            <NavBar isMobile={isMobile} />
             <RoutesWrapper>
                 <Routes>
                     <Route path='/' element={<ProductAll isMobile={isMobile} />} />
-                    <Route path='/login' element={<Login setAuthenticate={setAuthenticate}/>} />
+                    <Route path='/login' element={<Login />} />
                     <Route path='/product/:id' element={ authenticate ? <ProductDetail /> : <Navigate to='/login' />} />
                 </Routes>
             </RoutesWrapper>

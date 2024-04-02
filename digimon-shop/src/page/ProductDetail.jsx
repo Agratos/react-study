@@ -1,15 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 
+import { Col, Container, Row } from 'react-bootstrap';
+
+import { productAction } from '../store/action/productAction';
 
 const ProductDetail = () => {
+    const dispatch = useDispatch();
     const { id } = useParams(); 
-    const [product, setProduct] = useState(null);
+    const productDetail = useSelector(state => state.product.detail)
 
     useEffect(() => {
-        getProductDetail();
+        dispatch(productAction.getProductDetail(id))
     }, [])
 
     useEffect(() => {
@@ -41,40 +45,32 @@ const ProductDetail = () => {
         }
     }, [])
 
-    const getProductDetail = async() => {
-        const url = `https://my-json-server.typicode.com/Agratos/react-study/main/digimon-shop/products/?id=${id}`;
-        const response = await fetch(url);
-        const data = await response.json();
-
-        setProduct(data[0]);
-    }
-
     return (
         <Wrapper>
             <Row>
                 <Col>
                     <Card id={'container'}>
                         <Effect id={'overlay'} />
-                        <Image src={product?.img} />
+                        <Image src={productDetail?.img} />
                     </Card>
                 </Col>
                 <Col>
                     <InfoWrapper>
                         <InfoBox>
                             <InfoLabel>이름</InfoLabel>
-                            <Info>{product?.name}</Info>
+                            <Info>{productDetail?.name}</Info>
                         </InfoBox>
                         <InfoBox>
                             <InfoLabel>형태</InfoLabel>
-                            <Info>{product?.stage}</Info>
+                            <Info>{productDetail?.stage}</Info>
                         </InfoBox>
                         <InfoBox>
                             <InfoLabel>속성</InfoLabel>
-                            <Info>{product?.property}</Info>
+                            <Info>{productDetail?.property}</Info>
                         </InfoBox>
                         <InfoBox>
                             <InfoLabel>유형</InfoLabel>
-                            <Info>{product?.form}</Info>
+                            <Info>{productDetail?.form}</Info>
                         </InfoBox>
                     </InfoWrapper>
                 </Col>

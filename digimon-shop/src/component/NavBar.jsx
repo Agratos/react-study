@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import styled, { css } from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { faSearch, faBars } from '@fortawesome/free-solid-svg-icons';
 import { Offcanvas } from 'react-bootstrap';
+import { authenicateAction } from '../store/action/authenicateAction';
 
-
-const NavBar = ({ authenticate, setAuthenticate, isMobile }) => {
+const NavBar = ({ isMobile }) => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const authenticate = useSelector(state => state.auth.authenticate)
     const [navClick, setNavClick] = useState('');
     const [isShow, setIsShow] = useState(false);
 
@@ -22,7 +25,7 @@ const NavBar = ({ authenticate, setAuthenticate, isMobile }) => {
 
     const handleLogInOut = () => {
         if(authenticate){
-            setAuthenticate(false);
+            dispatch(authenicateAction.logout())
         } else {
             navigate('login')
         }
