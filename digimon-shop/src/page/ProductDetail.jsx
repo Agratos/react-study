@@ -5,15 +5,17 @@ import styled from 'styled-components';
 
 import { Col, Container, Row } from 'react-bootstrap';
 
-import { productAction } from '../store/action/productAction';
+//import { productAction } from '../store/action/productAction';
+import { fetchProductDetail } from '../store/slice/productSlice';
 
 const ProductDetail = () => {
     const dispatch = useDispatch();
     const { id } = useParams(); 
     const productDetail = useSelector(state => state.product.detail)
-
+    console.log(productDetail)
     useEffect(() => {
-        dispatch(productAction.getProductDetail(id))
+        //dispatch(productAction.getProductDetail(id))
+        dispatch(fetchProductDetail(id))
     }, [])
 
     useEffect(() => {

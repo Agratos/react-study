@@ -4,7 +4,8 @@ import { useDispatch } from 'react-redux';
 import { Form, Button } from 'react-bootstrap';
 import styled from 'styled-components';
 
-import { authenicateAction } from '../store/action/authenicateAction';
+//import { authenicateAction } from '../store/action/authenicateAction';
+import { authenicateActions } from '../store/slice/authenicateSlice';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -15,7 +16,8 @@ const Login = () => {
 
     const onLogin = (e) => {
         e.preventDefault();
-        dispatch(authenicateAction.login(id, password));
+        //dispatch(authenicateAction.login(id, password));
+        dispatch(authenicateActions.login({id, password}));
         navigate('/');
     }
 

@@ -6,7 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { faSearch, faBars } from '@fortawesome/free-solid-svg-icons';
 import { Offcanvas } from 'react-bootstrap';
-import { authenicateAction } from '../store/action/authenicateAction';
+//import { authenicateAction } from '../store/action/authenicateAction';
+import { authenicateActions } from '../store/slice/authenicateSlice';
 
 const NavBar = ({ isMobile }) => {
     const navigate = useNavigate();
@@ -25,7 +26,7 @@ const NavBar = ({ isMobile }) => {
 
     const handleLogInOut = () => {
         if(authenticate){
-            dispatch(authenicateAction.logout())
+            dispatch(authenicateActions.logout())
         } else {
             navigate('login')
         }

@@ -4,8 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Container, Row, Col } from 'react-bootstrap';
 import styled, { css } from 'styled-components';
 
-import { productAction } from '../store/action/productAction';
 import DigimonCard from '../component/DigimonCard';
+import { productAction } from '../store/action/productAction';
+import { fetchProductAll } from '../store/slice/productSlice';
 
 const ProductAll = ({ isMobile }) => {
     const dispatch = useDispatch();
@@ -13,12 +14,13 @@ const ProductAll = ({ isMobile }) => {
     const [query, setQuery] = useSearchParams();
 
     useEffect(() => {
-        getProducts();
+        getProduct();
     }, [query])
 
-    const getProducts = async() => {
+    const getProduct = () => {
         const searchQuery = query.get('q') ?? '';
-        dispatch(productAction.getProduct(searchQuery))
+        //dispatch(productAction.getProduct(searchQuery))
+        dispatch(fetchProductAll(searchQuery))
     }
 
     return (

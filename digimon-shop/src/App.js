@@ -23,7 +23,7 @@ import NavBar from './component/NavBar';
 const App = () => {
     const authenticate = useSelector(state => state.auth.authenticate)
     const [isMobile, setIsMobile] = useState(window.outerWidth < 800);
-
+    
     useEffect(() => {
         const handleResize = () => {
             setIsMobile(window.outerWidth < 800);
@@ -41,7 +41,7 @@ const App = () => {
             <NavBar isMobile={isMobile} />
             <RoutesWrapper>
                 <Routes>
-                    <Route path='/' element={<ProductAll isMobile={isMobile} />} />
+                    <Route path='/' element={<ProductAll ismobile={isMobile} />} />
                     <Route path='/login' element={<Login />} />
                     <Route path='/product/:id' element={ authenticate ? <ProductDetail /> : <Navigate to='/login' />} />
                 </Routes>
