@@ -64,6 +64,7 @@ const LogoImage = styled.img`
     height: 24px;
     padding: 0 12px;
     margin-right: 8px;
+    cursor: pointer;
 `;
 const FormControl = styled(Form.Control)`
     border: 1px solid #444444;
