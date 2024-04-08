@@ -1,4 +1,5 @@
 .movie-card{
+
     width: 240px;
     height: 330px;
     background-size: cover;
@@ -11,7 +12,10 @@
     z-index: 2;
 }
 
+
 .overlay{
+    display: flex;
+    flex-direction: column;
     width: 100%;
     height: 100%;
     background: rgba(43, 41, 41, 0.9);
@@ -20,7 +24,23 @@
     color: white;
     font-weight: bold;
     overflow-wrap: break-word;
+    padding: 8px;
+    font-weight: lighter;
 }
 .overlay:hover{
     opacity: 2;
+}
+.overlay h2{
+    flex: 1;
+    text-align: center;
+}
+
+.overlay-badge {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 8px;
+}
+
+.badge {
+    margin-right: 8px;
 }

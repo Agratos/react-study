@@ -12,3 +12,8 @@
     overflow: hidden;
     height: 440px;
 }
+
+.carousel-container::after:left{
+    width: 400px;
+    height: 440px;
+}
