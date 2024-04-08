@@ -1,0 +1,14 @@
+.popular-movies{
+    color:white;
+    margin-top: 16px;
+}
+
+.popular-movies h3{
+    margin-left: 16px;
+    font-weight: bolder;
+}
+
+.carousel-container{
+    overflow: hidden;
+    height: 440px;
+}
