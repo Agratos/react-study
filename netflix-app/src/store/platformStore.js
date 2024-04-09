@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 const initState = {
-    platform: 'pc'
+    platform: ''
 }
 
 const platformStore = create((set) => ({

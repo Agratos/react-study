@@ -2,11 +2,13 @@ import React from "react"
 import Alert from 'react-bootstrap/Alert';
 
 import { usePopularMoviesQuery } from "../../../../hooks/apis/usePopularMovies"
+import platformStore from "../../../../store/platformStore";
 
 import "./Banner.style.css";
 
 const Banner = () => {
     const { data , isLoading, isError, error } = usePopularMoviesQuery();
+    const { platform }  = platformStore((state) => state)
 
     if(isLoading) {
         <h1>Loading...</h1>
@@ -25,7 +27,7 @@ const Banner = () => {
         >
             <div className="text-white banner-text-area">
                 <h1>{data?.results[0].title}</h1>
-                <p>{data?.results[0].overview}</p>
+                {platform !== 'mobile' && <p>{data?.results[0].overview}</p>}
             </div>
         </div>
     )

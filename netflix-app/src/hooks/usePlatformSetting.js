@@ -11,6 +11,7 @@ const usePlatformSetting = () => {
             setPlatform(platformType);
         };
 
+        handleResize();
         window.addEventListener('resize', handleResize);
 
         return () => {

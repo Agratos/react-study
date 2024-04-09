@@ -14,7 +14,7 @@ const PopularMovieSlide = () => {
     if(isError){
         return <Alert variant="danger">{error.message}</Alert>
     }
-    console.log(data.results)
+
     return (
         <div>
             <MovieSlider 

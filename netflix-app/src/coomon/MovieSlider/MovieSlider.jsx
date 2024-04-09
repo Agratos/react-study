@@ -4,22 +4,25 @@ import "./MovieSlider.style.css";
 
 import Carousel from "react-multi-carousel";
 import MovieCard from "../MovieCard/MovieCard";
-
-import platformStore from "../../store/platformStore";
+import ButtonGroup from "./component/ButtonGroup";
 
 const MovieSlider = ({title, movies, responsive}) => {
     return (
         <div className="popular-movies">
             <h3>{title}</h3>
                 <Carousel
-                    infinite={true}
-                    centerMode={true}
                     itemClass="movie-slider"
                     containerClass="carousel-container"
                     responsive={responsive}
-                    //autoPlay={true}
+                    infinite={true}
+                    //centerMode={true}
+                    autoPlay={true}
                     autoPlaySpeed={3000}
                     showDots={true}
+                    partialVisbile={true}
+                    //arrows={false} 
+                    //renderButtonGroupOutside={true} 
+                    //customButtonGroup={<ButtonGroup />}
                 >
                     {movies?.slice(0, 7).map((movie, index) => (
                         <MovieCard movie={movie} key={index} />
