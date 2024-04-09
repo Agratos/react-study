@@ -1,19 +1,18 @@
 .movie-card{
-
-    width: 240px;
-    height: 330px;
+    width: 360px;
+    height: 200px;
     background-size: cover;
     cursor: pointer;
     transition: 0.5s;
     margin: auto;
 }
 .movie-card:hover{
-    transform: scale(1.2) translateZ(20px);
+    transform: scale(1.5) translateZ(20px);
     z-index: 2;
 }
 
-
 .overlay{
+    z-index: 2;
     display: flex;
     flex-direction: column;
     width: 100%;

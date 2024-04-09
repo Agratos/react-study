@@ -1,19 +1,19 @@
 .popular-movies{
     color:white;
-    margin-top: 16px;
+    margin-bottom: 60px;
 }
 
 .popular-movies h3{
     margin-left: 16px;
+    margin-bottom: -38px;
     font-weight: bolder;
+}
+
+.slider{
+    display: flex;
 }
 
 .carousel-container{
     overflow: hidden;
-    height: 440px;
-}
-
-.carousel-container::after:left{
-    width: 400px;
-    height: 440px;
+    height: 320px;
 }

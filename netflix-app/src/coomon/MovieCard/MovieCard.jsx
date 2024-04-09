@@ -4,7 +4,6 @@ import { Badge } from "react-bootstrap";
 import './MovieCard.style.css';
 
 const MovieCard = ({movie}) => {
-    console.log(movie)
     return (
         <div
             style={{

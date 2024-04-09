@@ -1,13 +1,13 @@
 import React from "react"
 import Alert from 'react-bootstrap/Alert';
 
-import { usePopularMoviesQuery } from "../../../../hooks/usePopularMovies"
+import { usePopularMoviesQuery } from "../../../../hooks/apis/usePopularMovies"
 
 import "./Banner.style.css";
 
 const Banner = () => {
     const { data , isLoading, isError, error } = usePopularMoviesQuery();
-    
+
     if(isLoading) {
         <h1>Loading...</h1>
     }
@@ -17,10 +17,10 @@ const Banner = () => {
     }
     
     return (
-        <div style={{
+        <div style={!isLoading ? {
             backgroundImage:
                 `url(${process.env.REACT_APP_BACKGROUND_URL}${data?.results[0].poster_path})`
-            }}
+            } : {}}
             className="banner"
         >
             <div className="text-white banner-text-area">

@@ -1,7 +1,10 @@
+import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import styled from "styled-components";
 
 import "bootstrap/dist/css/bootstrap.min.css";
+
+import usePlatformSetting from "./hooks/usePlatformSetting";
 
 import AppLayout from "./layout/AppLayout";
 import Homepage from "./pages/Homepage/Homepage";
@@ -16,6 +19,8 @@ import NotFoundPage from "./pages/NotFound/NotFoundPage";
 // 리뷰 /movies/:id/reviews
 
 const App = () => {
+    usePlatformSetting();
+
     return (
         <Wrapper>
             <Routes>
