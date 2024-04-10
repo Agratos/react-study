@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components"
 
@@ -12,6 +12,12 @@ import { Outlet } from "react-router-dom";
 
 const AppLayout = () => {
     const navigate = useNavigate();
+    const [keyword, setKeyword] = useState('');
+
+    const searchByKeyword = (event) => {
+        event.preventDefault();
+        navigate(`/movies${keyword && '?q='+keyword}`);
+    }
 
     return (
         <Wrapper>
@@ -40,13 +46,15 @@ const AppLayout = () => {
                                 Movies
                             </Nav.Link>
                         </Nav>
-                        <Form className="d-flex">
+                        <Form className="d-flex" onSubmit={searchByKeyword}>
                             <FormControl
                                 type="search"
                                 placeholder="Search"
                                 className="me-2 bg-dark text-white"
+                                value={keyword}
+                                onChange={(e) => setKeyword(e.target.value)}
                             />
-                            <Button variant="outline-danger">Search</Button>
+                            <Button variant="outline-danger" type="submit">Search</Button>
                         </Form>
                     </Navbar.Collapse>
                 </Container>

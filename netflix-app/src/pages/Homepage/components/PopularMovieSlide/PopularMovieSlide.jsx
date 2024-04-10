@@ -1,6 +1,6 @@
 import React from "react"
 import { usePopularMoviesQuery } from '../../../../hooks/apis/usePopularMovies';
-import { Alert } from "bootstrap";
+import { Alert } from "react-bootstrap";
 
 import MovieSlider from "../../../../coomon/MovieSlider/MovieSlider";
 import { responsive } from "../../../../constants/responseive";

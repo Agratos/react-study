@@ -19,7 +19,6 @@ const MovieSlider = ({title, movies, responsive}) => {
                     autoPlay={true}
                     autoPlaySpeed={3000}
                     showDots={true}
-                    partialVisbile={true}
                     //arrows={false} 
                     //renderButtonGroupOutside={true} 
                     //customButtonGroup={<ButtonGroup />}

@@ -1,6 +1,6 @@
 import React from "react"
 import { useTopRatedMoviesQuery } from "../../../../hooks/apis/useTopRatedMovies";
-import { Alert } from "bootstrap";
+import { Alert } from "react-bootstrap";
 
 import MovieSlider from "../../../../coomon/MovieSlider/MovieSlider";
 import { responsive } from "../../../../constants/responseive";
