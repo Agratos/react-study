@@ -27,7 +27,7 @@ const Banner = () => {
         >
             <div className="text-white banner-text-area">
                 <h1>{data?.results[0].title}</h1>
-                {platform !== 'mobile' && <p>{data?.results[0].overview}</p>}
+                <p>{data?.results[0].overview}</p>
             </div>
         </div>
     )

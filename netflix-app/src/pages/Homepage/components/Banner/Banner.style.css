@@ -13,16 +13,27 @@
     height: 56vh;
     width: 100%;
 }
-
-.banner-text-area{
-    width: 36%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    height: 100%;
-    padding: 2rem;
+@media (min-width:400px) and (max-width:1024px) {
+    .banner-text-area{
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+        padding: 2rem;
+    }
 }
-
+@media (min-width:1025px){
+    .banner-text-area{
+        width: 36%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+        padding: 2rem;
+    
+    }
+}
 .banner-text-area > *{
     z-index: 1;
 }

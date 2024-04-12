@@ -1,0 +1,49 @@
+        <Wrapper>
+            <Background path={`${process.env.REACT_APP_BACKGROUND_URL}${data.backdrop_path}`}/>
+            <MovieDetail platfrom={platfrom}>
+                {platfrom !== 'mobile' &&
+                    <ImageWrapper platfrom={platfrom}>
+                        <Image src={`${process.env.REACT_APP_DETAIL_URL}${data.poster_path}`} alt={'poster'}/>
+                    </ImageWrapper>
+                }
+                <InfoWrapper>
+                    <BedgeWrapper>
+                        {showGenre(data?.genres).map((name) => (
+                            <Badge bg="danger" className="badge" key={name}>{name}</Badge>
+                        ))}
+                    </BedgeWrapper>
+                    <Title>{data?.title}</Title>
+                    <SubTitle>{data?.tagline}</SubTitle>
+                    <Info>
+                        <InfoLabel>평점-</InfoLabel>
+                        <Average>{data?.vote_average}</Average>
+                        <InfoLabel>추천-</InfoLabel>
+                        <VoteCount>{data?.vote_count}</VoteCount>
+                    </Info>
+                    <Overview>
+                        {data?.overview}
+                    </Overview>
+                    <BudgeWrapper>
+                        <BudgetLabel>Budget</BudgetLabel>
+                        <BudgetValue>${data.budget.toLocaleString()}</BudgetValue>
+                    </BudgeWrapper>
+                    <BudgeWrapper>
+                        <BudgetLabel>Revenue</BudgetLabel>
+                        <BudgetValue>${data.revenue.toLocaleString()}</BudgetValue>
+                    </BudgeWrapper>
+                    <BudgeWrapper>
+                        <BudgetLabel>Release Date</BudgetLabel>
+                        <BudgetValue>{data.release_date}</BudgetValue>
+                    </BudgeWrapper>
+                    <BudgeWrapper>
+                        <BudgetLabel>Run Time</BudgetLabel>
+                        <BudgetValue>{data.runtime}분</BudgetValue>
+                    </BudgeWrapper>
+                </InfoWrapper>
+            </MovieDetail>
+            <ReviewWrapper>
+                <ButtonWrapper>
+                    <Button isClick={buttonClick === 'review'}>Review<ButtonLabel>{`(${reviews.total_results})`}</ButtonLabel></Button>
+                </ButtonWrapper>
+            </ReviewWrapper>
+        </Wrapper>

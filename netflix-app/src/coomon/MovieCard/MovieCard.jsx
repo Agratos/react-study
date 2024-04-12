@@ -32,7 +32,9 @@ const MovieCard = ({movie}) => {
             className="movie-card"
             onClick={cardClick}
         >
-            <div className="overlay">
+            <div className="overlay" style={!movie.poster_path ? {
+                opacity: 2
+            }: {}}>
                 <h2>{movie.title}</h2>
                 <div className="overlay-badge">
                     {showGenre(movie?.genre_ids).map((name) => (
