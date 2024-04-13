@@ -18,6 +18,7 @@ const MoviePage = () => {
     const [page, segPage] = useState(1);
     const [sortType, setSortType] = useState(0);
     const [genre, setGenre] = useState(null);
+    const [totalPage, setTotalPage] = useState(0);
     const keyword = query.get('q');
 
     const { data, isLoading, isError, error } = useSearchMovieQuery({ keyword, page, sort: sortType, genre: genre?.id});
@@ -25,23 +26,28 @@ const MoviePage = () => {
     const platform = platformStore((state) => state.platform);
 
     useEffect(() => {
-        if(keyword && genre.id){
-            const temp = data?.filter(({genre_ids}) => genre_ids.includes(genre.id))
-            sortType === 1 ? 
-                setMovieData(temp?.sort((a, b) => a.popularity - b.popularity)):
-                setMovieData(temp?.sort((a, b) => b.popularity - a.popularity))
-        } else if(keyword){
-            sortType === 1 ? 
-                setMovieData(data?.sort((a, b) => a.popularity - b.popularity)):
-                setMovieData(data?.sort((a, b) => b.popularity - a.popularity))
-        } else {
-            setMovieData(data)
+        if(data){
+            if(keyword && genre?.id){
+                const temp = data?.results.filter(({genre_ids}) => genre_ids.includes(genre?.id))
+                sortType === 1 ? 
+                    setMovieData(temp?.sort((a, b) => a.popularity - b.popularity)):
+                    setMovieData(temp?.sort((a, b) => b.popularity - a.popularity))
+    
+                setTotalPage(Math.ceil(temp?.length / 10))
+            } else if(keyword){
+                sortType === 1 ? 
+                    setMovieData(data?.results.sort((a, b) => a.popularity - b.popularity)):
+                    setMovieData(data?.results.sort((a, b) => b.popularity - a.popularity))
+    
+                    setTotalPage(data?.total_pages)
+            } else {
+                setMovieData(data?.results)
+                setTotalPage(data?.total_pages)
+            }
         }
     }, [data])
 
-    if(isLoading){
-        return <div>Loading</div>
-    }
+
     if(isError){
         return <Alert variant="danger">{error.message}</Alert>
     }
@@ -51,13 +57,13 @@ const MoviePage = () => {
     }
 
     const handleGenre = ({id, name}) => {
-        if(genre === id){
+        if(genre?.id === id){
             setGenre(null);
         } else {
             setGenre({id, name});
         }
     }
-
+    
     return (
         <Wrapper>
             <ButtonWrapper>
@@ -71,8 +77,8 @@ const MoviePage = () => {
                 {platform !== 'mobile' ? 
                     list?.map(({name, id}, index) => (
                         <GenreButton 
-                            onClick={() => handleGenre(id)}
-                            click={id === genre ? 'true' : 'false'}
+                            onClick={() => handleGenre({name, id})}
+                            click={id === genre?.id ? 'true' : 'false'}
                             key={index}
                         >{name}</GenreButton>
                     )):
@@ -80,6 +86,9 @@ const MoviePage = () => {
                         align={{ lg: 'start' }}
                         title={genre?.name ?? '장르'}
                     >
+                        <Dropdown.Item  
+                            onClick={() => handleGenre(null)}
+                        >장르</Dropdown.Item >
                         {
                             list?.map(({name, id}, index) => (
                                 <Dropdown.Item  
@@ -96,28 +105,31 @@ const MoviePage = () => {
                     <SearchCard movie={movie} key={index}/>
                 ))}
             </SearchWrapper>
-            <PaginationWrapper>
-                <ReactPaginate
-                    previousLabel="Previous"
-                    nextLabel="Next"
-                    pageClassName="page-item"
-                    pageLinkClassName="page-link"
-                    previousClassName="page-item"
-                    previousLinkClassName="page-link"
-                    nextClassName="page-item"
-                    nextLinkClassName="page-link"
-                    breakLabel={platform !== 'mobile' ? '...' : ''}
-                    breakClassName="page-item"
-                    breakLinkClassName="page-link"
-                    pageCount={data?.total_pages}
-                    marginPagesDisplayed={platform !== 'mobile' ? 2 : 0}
-                    pageRangeDisplayed={platform !== 'mobile' ? 9 : 5}
-                    onPageChange={handlePageChange}
-                    containerClassName="pagination"
-                    activeClassName="active"
-                    forcePage={page - 1}
-                />
-            </PaginationWrapper> 
+            {totalPage !== 0 &&
+                <PaginationWrapper>
+                    <ReactPaginate
+                        previousLabel="Previous"
+                        nextLabel="Next"
+                        pageClassName="page-item"
+                        pageLinkClassName="page-link"
+                        previousClassName="page-item"
+                        previousLinkClassName="page-link"
+                        nextClassName="page-item"
+                        nextLinkClassName="page-link"
+                        breakLabel={platform !== 'mobile' ? '...' : ''}
+                        breakClassName="page-item"
+                        breakLinkClassName="page-link"
+                        pageCount={totalPage}
+                        marginPagesDisplayed={platform !== 'mobile' ? 2 : 0}
+                        pageRangeDisplayed={platform !== 'mobile' ? 9 : 5}
+                        onPageChange={handlePageChange}
+                        containerClassName="pagination"
+                        activeClassName="active"
+                        forcePage={page - 1}
+                    />
+                </PaginationWrapper> 
+            }
+           
         </Wrapper>
     )
 }

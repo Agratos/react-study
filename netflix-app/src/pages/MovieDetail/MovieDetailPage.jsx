@@ -185,7 +185,10 @@ const InfoWrapper = styled(ImageWrapper)`
     display: flex;
     justify-content: center;
     flex-direction: column;
-    margin-top: 30px;
+    ${({platfrom}) => platfrom === 'mobile' && css`
+        height: 100%;
+        margin-top: 40px;
+    `}
 `;
 const BedgeWrapper = styled.div`
     display: flex;
