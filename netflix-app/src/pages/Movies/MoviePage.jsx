@@ -12,30 +12,28 @@ import platformStore from '../../store/platformStore';
 // nav 바에서 클릭해서 온경우
 // keyword 입력해서 온 경우
 const MoviePage = () => {
-    const sortList = [`정렬 없음`, `인기순 ( up )`, `인기순 ( down )`]
-    const [movieData, setMovieData] = useState([]);
+    const sortList = [`인기순 ( up )`, `인기순 ( down )`]
+    const [movieData, setMovieData] = useState(null);
     const [query, setQuery] = useSearchParams();
     const [page, segPage] = useState(1);
-    const [sortType, setSortType] = useState(0)
+    const [sortType, setSortType] = useState(0);
+    const [genre, setGenre] = useState(null);
     const keyword = query.get('q');
 
-    const { data, isLoading, isError, error } = useSearchMovieQuery({ keyword, page, sort: sortType});
+    const { data, isLoading, isError, error } = useSearchMovieQuery({ keyword, page, sort: sortType, genre: genre?.id});
     const { data: list } = useMovieGenreQuery();
     const platform = platformStore((state) => state.platform);
 
     useEffect(() => {
-        if(keyword){
-            switch(sortType){
-                case 1:
-                    setMovieData(data?.sort((a, b) => b.popularity - a.popularity))
-                    break;
-                case 2:
-                    setMovieData(data?.sort((a, b) => a.popularity - b.popularity))
-                    break;
-                default: 
-                    setMovieData(data)
-                    break;
-            }
+        if(keyword && genre.id){
+            const temp = data?.filter(({genre_ids}) => genre_ids.includes(genre.id))
+            sortType === 1 ? 
+                setMovieData(temp?.sort((a, b) => a.popularity - b.popularity)):
+                setMovieData(temp?.sort((a, b) => b.popularity - a.popularity))
+        } else if(keyword){
+            sortType === 1 ? 
+                setMovieData(data?.sort((a, b) => a.popularity - b.popularity)):
+                setMovieData(data?.sort((a, b) => b.popularity - a.popularity))
         } else {
             setMovieData(data)
         }
@@ -51,19 +49,47 @@ const MoviePage = () => {
     const handlePageChange = ({selected}) => {
         segPage(selected + 1)
     }
-    
+
+    const handleGenre = ({id, name}) => {
+        if(genre === id){
+            setGenre(null);
+        } else {
+            setGenre({id, name});
+        }
+    }
+
     return (
         <Wrapper>
             <ButtonWrapper>
-                <DropDown
+                <SortButton
                     align={{ lg: 'start' }}
                     title={sortList[sortType]}
                 >
                     <Dropdown.Item onClick={() => setSortType(0)}>{sortList[0]}</Dropdown.Item>
                     <Dropdown.Item onClick={() => setSortType(1)}>{sortList[1]}</Dropdown.Item>
-                    <Dropdown.Item onClick={() => setSortType(2)}>{sortList[2]}</Dropdown.Item>
-                </DropDown>
-                {}
+                </SortButton>
+                {platform !== 'mobile' ? 
+                    list?.map(({name, id}, index) => (
+                        <GenreButton 
+                            onClick={() => handleGenre(id)}
+                            click={id === genre ? 'true' : 'false'}
+                            key={index}
+                        >{name}</GenreButton>
+                    )):
+                    <SortButton
+                        align={{ lg: 'start' }}
+                        title={genre?.name ?? '장르'}
+                    >
+                        {
+                            list?.map(({name, id}, index) => (
+                                <Dropdown.Item  
+                                    onClick={() => handleGenre({id, name})}
+                                    key={index}
+                                >{name}</Dropdown.Item >
+                            ))
+                        }
+                    </SortButton>
+                }
             </ButtonWrapper>
             <SearchWrapper platform={platform}>
                 {movieData?.slice(0, 400).map((movie, index) => (
@@ -121,8 +147,20 @@ const ButtonWrapper = styled.div`
     width: 100%;
     padding: 16px 24px;
 `;
-const DropDown = styled(SplitButton)`
-   
+const SortButton = styled(SplitButton)`
+    margin: 8px;
+`;
+const GenreButton = styled.div`
+    margin: 8px;
+    background-color: #0d6efd;
+    color: white;
+    align-items: center;
+    border-radius: 6px;
+    padding: 6px 12px;
+    cursor: pointer;
+    ${({click}) => click === 'true' && css`
+        background-color: #37c232;
+    `}
 `;
 
 export default MoviePage

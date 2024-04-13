@@ -12,7 +12,7 @@ const SearchCard = ({movie}) => {
     const showGenre = (genreIdList) => {
         if(!genreData) return [];
 
-        const genreNameList = genreIdList.map((id) => {
+        const genreNameList = genreIdList?.map((id) => {
             const genreObj = genreData.find((genre) => genre.id === id)
             return genreObj.name;
         })
@@ -35,7 +35,7 @@ const SearchCard = ({movie}) => {
             <div className="overlay">
                 <div className="search-title">{movie.title}</div>
                 <div className="overlay-badge">
-                    {showGenre(movie?.genre_ids).map((name) => (
+                    {showGenre(movie?.genre_ids)?.map((name) => (
                         <Badge bg="danger" className="badge" key={name}>{name}</Badge>
                     ))}
                 </div>
