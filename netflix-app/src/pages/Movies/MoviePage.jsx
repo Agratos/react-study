@@ -87,7 +87,7 @@ const MoviePage = () => {
                         title={genre?.name ?? '장르'}
                     >
                         <Dropdown.Item  
-                            onClick={() => handleGenre(null)}
+                            onClick={() => handleGenre(genre)}
                         >장르</Dropdown.Item >
                         {
                             list?.map(({name, id}, index) => (
