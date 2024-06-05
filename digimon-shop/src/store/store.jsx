@@ -17,10 +17,10 @@ import productSlice from './slice/productSlice';
 // );
 
 const store = configureStore({
-    reducer:{
-        auth: authenicateSlice,
-        product: productSlice
-    }
-})
+	reducer: {
+		auth: authenicateSlice,
+		product: productSlice,
+	},
+});
 
 export default store;
